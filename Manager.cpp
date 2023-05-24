@@ -2,16 +2,19 @@
 Manager::Manager()
 {
 }
-Manager::Manager(int ID, string name, string sex, int age, int phone, string email, string address) : People(ID, name, sex, age, phone, email, address)
+Manager::Manager(string ID, string name, string sex, int age, string phone, string email, string address) : People(ID, name, sex, age, phone, email, address)
 {
 }
 void Manager::readFilePeople(ifstream &inFile)
 {
-    inFile >> this->ID;
+    char x;
+    inFile >> x;
+    getline(inFile, this->ID, ',');
     getline(inFile, this->name, ',');
     getline(inFile, this->sex, ',');
     inFile >> this->age;
-    inFile >> this->phone;
+    inFile >> x;
+    getline(inFile, this->phone, ',');
     getline(inFile, this->email, ',');
     getline(inFile, this->address, ',');
 }
@@ -28,15 +31,19 @@ void Manager::exportFilePeople(ofstream &outFile)
 }
 void Manager::input()
 {
+    cin.ignore();
     cout << "Enter Manager ID: ";
-    cin >> ID;
+    getline(cin, ID);
     cout << "Enter Manager Name: ";
     cin.ignore(); // Clear the input buffer
     getline(cin, name);
     cout << "Enter Manager Sex: ";
     cin >> sex;
+    cout << "Enter Manager Age: ";
+    cin >> age;
+    cin.ignore();
     cout << "Enter Manager Phone: ";
-    cin >> phone;
+    getline(cin, phone);
     cout << "Enter Manager Email: ";
     cin >> email;
     cout << "Enter Manager Address: ";
@@ -54,4 +61,4 @@ void Manager::output()
     cout << "Email : " << email << endl;
     cout << "Adress : " << address << endl;
 }
-Manager::~Manager(){}
+Manager::~Manager() {}

@@ -1,7 +1,7 @@
 #include "People.h"
 
 People::People() {}
-People::People(int ID, string name, string sex, int age, int phone, string email, string address)
+People::People(string ID, string name, string sex, int age, string phone, string email, string address)
 {
     this->ID = ID;
     this->name = name;
@@ -11,11 +11,11 @@ People::People(int ID, string name, string sex, int age, int phone, string email
     this->email = email;
     this->address = address;
 }
-void People::setId(int ID)
+void People::setId(string ID)
 {
     this->ID = ID;
 }
-int People::getId()
+string People::getId()
 {
     return ID;
 }
@@ -43,11 +43,11 @@ int People::getAge()
 {
     return age;
 }
-void People::setPhone(int phone)
+void People::setPhone(string phone)
 {
     this->phone = phone;
 }
-int People::getPhone()
+string People::getPhone()
 {
     return phone;
 }

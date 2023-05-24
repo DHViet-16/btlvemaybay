@@ -2,88 +2,56 @@
 
 USER::USER() {}
 
-USER::USER(string username, string password, string idUser) : ACCOUNT(username, password) {
+USER::USER(string username, string password, string idUser) : ACCOUNT(username, password)
+{
     this->idUser = idUser;
 }
 
-void USER::setIdUser(string idUser) {
+void USER::setIdUser(string idUser)
+{
     this->idUser = idUser;
 }
 
-string USER::getIdUser() {
+string USER::getIdUser()
+{
     return idUser;
 }
 
-int USER::getFormat() {
+int USER::getFormat()
+{
     return 2;
 }
-
-void USER::input(int iduser) {
-//    cin.ignore();
-    char ch;
-    cout << "\n\t\t\t\t\t\t\t\t\t      Enter username                : ";
-	getline(cin, username);
-	string pass, comfirmPass;
-	cout << "\n\t\t\t\t\t\t\t\t\t      Enter password                : ";
-	ch = getch();
-    while (ch != 13) {
-        if(ch != 8) {
-            pass.push_back(ch);
-            cout << '*';
-        }
-        else {
-            if(pass.size() != 0) {
-                pass.erase(pass.end() - 1);
-                cout << "\b \b";
-            }
-        }
-        ch = getch();
-    }
-    cout << "\n\n\t\t\t\t\t\t\t\t\t      Re-Enter password to comfirm  : ";
-    ch = getch();
-    while (ch != 13) {
-        if(ch != 8) {
-            comfirmPass.push_back(ch);
-            cout << '*';
-        }
-        else {
-            if(comfirmPass.size() != 0) {
-                comfirmPass.erase(comfirmPass.end() - 1);
-                cout << "\b \b";
-            }
-        }
-        ch = getch();
-    }
-    do {
-        if (comfirmPass != pass) {
-            cout << "\n\n\t\t\t\t\t\t\t\t\t                          INCORRECT PASSWORD!";
-            cout << "\n\n\t\t\t\t\t\t\t\t\t                  Please re-enter your password to comfirm : ";
+void USER::input(string idUser)
+{
+    cout << "\n Enter username: ";
+    getline(cin, username);
+    string pass, comfirmPass;
+    cout << "\n Enter password: ";
+    getline(cin, pass);
+    cout << "\n Re-Enter password to comfirm: ";
+    getline(cin, comfirmPass);
+    do
+    {
+        if (comfirmPass != pass)
+        {
+            cout << "\n  INCORRECT PASSWORD!";
+            cout << "\nPlease re-enter your password to comfirm : ";
             comfirmPass.clear();
-            ch = getch();
-            while (ch != 13) {
-                if(ch != 8) {
-                    comfirmPass.push_back(ch);
-                    cout << '*';
-                }
-                else {
-                    if(comfirmPass.size() != 0) {
-                        comfirmPass.erase(comfirmPass.end() - 1);
-                        cout << "\b \b";
-                    }
-                }
-                ch = getch();
-            }
+            getline(cin, comfirmPass);
         }
     } while (comfirmPass != pass);
-	this->password = pass;
-	this->idUser = idUser;
+
+    this->password = pass;
+    this->idUser = idUser;
 }
 
-string USER::getId () {
+string USER::getId()
+{
     return this->idUser;
 }
 
-void USER::readFileAAccount(ifstream &inFile) {
+void USER::readFileAAccount(ifstream &inFile)
+{
     char x;
     inFile >> x;
     getline(inFile, this->username, ',');
@@ -91,16 +59,19 @@ void USER::readFileAAccount(ifstream &inFile) {
     getline(inFile, this->idUser, ',');
 }
 
-void USER::exportFileAAccount(ofstream &outFile) {
+void USER::exportFileAAccount(ofstream &outFile)
+{
     outFile << 2 << ",";
     outFile << this->username << ",";
     outFile << this->password << ",";
     outFile << this->idUser << ",";
 }
-void USER::changePassword(string _password) {
-    this -> password = _password;
+void USER::changePassword(string _password)
+{
+    this->password = _password;
 }
-void USER::changeUserName(string _userName) {
-    this -> username = _userName;
+void USER::changeUserName(string _userName)
+{
+    this->username = _userName;
 }
 USER::~USER() {}

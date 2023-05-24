@@ -1,11 +1,11 @@
+#pragma once
 #include "People.h"
-#include <vector>
 
 class Customer: public People
 {
     public:
     Customer();
-    Customer(int , string ,string ,int , int,  string , string );
+    Customer(string , string ,string ,int , string,  string , string );
     void input();
     void output();
     void readFilePeople(ifstream &inFile);

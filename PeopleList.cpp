@@ -10,56 +10,27 @@ vector<People *> PEOPLELIST::getPeopleList()
 }
 void PEOPLELIST::input(ACCOUNTSLIST &accountsList)
 {
-    int quantities;
-    cout << "\n Number of readers you want to add is: ";
-    cin >> quantities;
-    cin.ignore();
-    for (int i = 0; i < quantities; i++)
+    system("cls");
+    cout << "INPUT INFORMATION OF THE PEOPLE" << endl;
+    People *Temporary;
+    Temporary = new Customer;
+    Temporary->input();
+    do
     {
-        system("cls");
-        cout << "INPUT INFORMATION OF THE " << i + 1 << "PEOPLE" << endl;
-        int select;
-        cout << "\nChoose an option:   " << endl
-             << "1. INPUT A CUSTOMER" << endl
-             << "2. INPUT A MANAGER" << endl
-             << "Your selection is: ";
-        cin >> select;
-        do
+        if (checkDuplicatedIdPeople(Temporary->getId()) == true)
         {
-            if (select != 1 && select != 2)
-            {
-                cout << "\nYOU HAVE ENTERED AN INVALID SELECTION! PLEASE RE-ENTER: ";
-                cin >> select;
-            }
-        } while (select != 1 && select != 2);
-        People *Temporary;
-        if (select == 1)
-        {
-            Temporary = new Customer;
+            system("cls");
+            cout << "INPUT INFORMATION OF THE PEOPLE" << endl;
+            cout << "Please re-enter this people identification: ";
+            string Temp;
+            cin >> Temp;
+            Temporary->setId(Temp);
         }
-        else if (select == 2)
-        {
-            Temporary = new Manager;
-        }
-        system("cls");
-        cout << "INPUT INFORMATION OF THE " << i + 1 << "PEOPLE" << endl;
-        Temporary->input();
-        do
-        {
-            if (checkDuplicatedIdPeople(Temporary->getId()) == true)
-            {
-                system("cls");
-                cout << "INPUT INFORMATION OF THE " << i + 1 << "PEOPLE" << endl;
-                cout << "Please re-enter this reader's identification: ";
-                int Temp;
-                cin >> Temp;
-                Temporary->setId(Temp);
-            }
-        } while (checkDuplicatedIdPeople(Temporary->getId()) == true);
-        accountsList.inputAAcount(Temporary->getId());
-        PeopleList.push_back(Temporary);
-        cout << "\n Input information succesfully!! Press any key to continue. . .";
-    }
+    } while (checkDuplicatedIdPeople(Temporary->getId()) == true);
+    accountsList.inputAAcount(Temporary->getId());
+    
+    PeopleList.push_back(Temporary);
+    cout << "\n Input information succesfully!! Press any key to continue. . .";
 }
 void PEOPLELIST::output()
 {
@@ -90,7 +61,7 @@ void PEOPLELIST::outputAllPeople()
         PeopleList[i]->output();
     }
 }
-bool PEOPLELIST::checkDuplicatedIdPeople(int idpeople)
+bool PEOPLELIST::checkDuplicatedIdPeople(string idpeople)
 {
     for (int i = 0; i < PeopleList.size(); i++)
     {
@@ -98,11 +69,11 @@ bool PEOPLELIST::checkDuplicatedIdPeople(int idpeople)
         {
             return true;
         }
-        return false;
     }
+    return false;
 }
 
-int PEOPLELIST::findPeopleById(int idpeopele)
+int PEOPLELIST::findPeopleById(string idpeopele)
 {
     for (int i = 0; i < PeopleList.size(); i++)
     {
@@ -132,11 +103,14 @@ void PEOPLELIST::findPeopleByName(string name)
         cout << "\n PLEASE TRY AGAIN!";
     }
 }
-void PEOPLELIST::deletePeopleById(int idpeople) {
-    for(int i = 0; i < PeopleList.size(); i++) {
-        if(PeopleList[i]->getId() == idpeople) {
+void PEOPLELIST::deletePeopleById(string idpeople)
+{
+    for (int i = 0; i < PeopleList.size(); i++)
+    {
+        if (PeopleList[i]->getId() == idpeople)
+        {
             PeopleList.erase(PeopleList.begin() + i);
-			cout << "\n Delete reader successfully!!! Press any key to continue. . .";
+            cout << "\n Delete reader successfully!!! Press any key to continue. . .";
             return;
         }
     }
@@ -154,11 +128,11 @@ void PEOPLELIST::readFile()
         People *Temporary;
         if (select == 1)
         {
-            Temporary = new Customer;
+            Temporary = new Manager;
         }
         else if (select == 2)
         {
-            Temporary = new Manager;
+            Temporary = new Customer;
         }
         Temporary->readFilePeople(inFile);
         PeopleList.push_back(Temporary);
@@ -170,7 +144,6 @@ void PEOPLELIST::readFile()
     }
     inFile.close();
 }
-
 void PEOPLELIST::exportFile()
 {
     ofstream outFile;

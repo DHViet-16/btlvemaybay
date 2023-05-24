@@ -22,61 +22,22 @@ int ADMIN::getFormat() {
     return 1;
 }
 
-void ADMIN::input(int idAdmin) {
-//    cin.ignore();
-    char ch;
-    cout << "\n\t\t\t\t\t\t\t\t\t      Enter username                : ";
-	getline(cin, username);
-	string pass, comfirmPass;
-	cout << "\n\t\t\t\t\t\t\t\t\t      Enter password                : ";
-	ch = getch();
-    while (ch != 13) {
-        if(ch != 8) {
-            pass.push_back(ch);
-            cout << '*';
-        }
-        else {
-            if(pass.size() != 0) {
-                pass.erase(pass.end() - 1);
-                cout << "\b \b";
-            }
-        }
-        ch = getch();
-    }
-    cout << "\n\n\t\t\t\t\t\t\t\t\t      Re-Enter password to comfirm  : ";
-    ch = getch();
-    while (ch != 13) {
-        if(ch != 8) {
-            comfirmPass.push_back(ch);
-            cout << '*';
-        }
-        else {
-            if(comfirmPass.size() != 0) {
-                comfirmPass.erase(comfirmPass.end() - 1);
-                cout << "\b \b";
-            }
-        }
-        ch = getch();
-    }
-    do {
-        if (comfirmPass != pass) {
-            cout << "\n\n\t\t\t\t\t\t\t\t\t                          INCORRECT PASSWORD!";
-            cout << "\n\n\t\t\t\t\t\t\t\t\t                  Please re-enter your password to comfirm : ";
+void ADMIN::input(string idAdmin) {
+cout << "\n Enter username: ";
+    getline(cin, username);
+    string pass, comfirmPass;
+    cout << "\n Enter password: ";
+    getline(cin, pass);
+    cout << "\n Re-Enter password to comfirm: ";
+    getline(cin, comfirmPass);
+    do
+    {
+        if (comfirmPass != pass)
+        {
+            cout << "\n  INCORRECT PASSWORD!";
+            cout << "\nPlease re-enter your password to comfirm: ";
             comfirmPass.clear();
-            ch = getch();
-            while (ch != 13) {
-                if(ch != 8) {
-                    comfirmPass.push_back(ch);
-                    cout << '*';
-                }
-                else {
-                    if(comfirmPass.size() != 0) {
-                        comfirmPass.erase(comfirmPass.end() - 1);
-                        cout << "\b \b";
-                    }
-                }
-                ch = getch();
-            }
+            getline(cin, comfirmPass);
         }
     } while (comfirmPass != pass);
     this->password = pass;

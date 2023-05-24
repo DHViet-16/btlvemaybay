@@ -1,14 +1,16 @@
+#ifndef Manager_h
+#define Manager_h
 #include "People.h"
-#include <vector>
 
 class Manager: public People
 {
     public:
     Manager();
-    Manager(int , string ,string ,int , int,  string , string );
+    Manager(string ,string ,string ,int , string ,string ,string );
     void input();
     void output();
     void readFilePeople(ifstream &inFile);
-    void exportFilePeople (ofstream &outFile);
+    void exportFilePeople(ofstream &outFile);
     ~Manager();
 };
+#endif 
