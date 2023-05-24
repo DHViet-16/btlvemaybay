@@ -5,7 +5,6 @@ ACCOUNT::ACCOUNT(string username, string password) {
     this->username = username;
     this->password = password;
 }
-
 void ACCOUNT::setUsername(string username) {
     this->username = username;
 }

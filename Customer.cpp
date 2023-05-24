@@ -2,22 +2,25 @@
 Customer::Customer()
 {
 }
-Customer::Customer(int ID, string name, string sex, int age, int phone, string email, string address) : People(ID, name, sex, age, phone, email, address)
+Customer::Customer(string ID, string name, string sex, int age, string phone, string email, string address) : People(ID, name, sex, age, phone, email, address)
 {
 }
 void Customer::readFilePeople(ifstream &inFile)
 {
-    inFile >> this->ID;
+    char x;
+    inFile >> x;
+    getline(inFile, this->ID, ',');
     getline(inFile, this->name, ',');
     getline(inFile, this->sex, ',');
     inFile >> this->age;
-    inFile >> this->phone;
+    inFile >> x;
+    getline(inFile, this->phone, ',');
     getline(inFile, this->email, ',');
     getline(inFile, this->address, ',');
 }
 void Customer::exportFilePeople(ofstream &outFile)
 {
-    outFile << 1 << ",";
+    outFile << 2 << ",";
     outFile << this->ID << ",";
     outFile << this->name << ",";
     outFile << this->sex << ",";
@@ -28,19 +31,21 @@ void Customer::exportFilePeople(ofstream &outFile)
 }
 void Customer::input()
 {
+    cin.ignore();
     cout << "Enter Customer ID: ";
-    cin >> ID;
+    getline(cin, ID);
     cout << "Enter Customer Name: ";
-    cin.ignore(); // Clear the input buffer
     getline(cin, name);
     cout << "Enter Customer Sex: ";
     cin >> sex;
+    cout << "Enter Customer Age: ";
+    cin >> age;
+    cin.ignore();
     cout << "Enter Customer Phone: ";
-    cin >> phone;
+    getline(cin, phone);
     cout << "Enter Customer Email: ";
-    cin >> email;
+    getline(cin, email);
     cout << "Enter Customer Address: ";
-    cin.ignore(); // Clear the input buffer
     getline(cin, address);
     cout << "Customer created." << endl;
 }

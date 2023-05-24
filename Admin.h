@@ -1,5 +1,5 @@
 #pragma once
-#include "ACCOUNT.h"
+#include "Account.h"
 
 class ADMIN : public ACCOUNT
 {
@@ -7,12 +7,12 @@ class ADMIN : public ACCOUNT
         string idAdmin;
     public:
         ADMIN();
-        ADMIN(string, string, string);
+        ADMIN(string, string, string );
         void setIdAdmin(string);
         string getIdAdmin();
         string getId();
         int getFormat();
-        void input(int);
+        void input(string);
         void readFileAAccount(ifstream &);
         void exportFileAAccount(ofstream &);
         void changePassword(string);

@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include"People.h"
+#include "People.h"
 #include "Customer.h"
 #include "Manager.h"
-#include"AccountList.h"
+#include "AccountList.h"
 #include <sstream>
 #include <string.h>
 using namespace std;
@@ -12,7 +12,7 @@ using namespace std;
 class PEOPLELIST
 {
     private:
-        vector<People*>PeopleList;
+        vector<People*> PeopleList;
     public:
         PEOPLELIST();
         void setPeopleList(vector<People*>);
@@ -22,11 +22,11 @@ class PEOPLELIST
         void outputCustomer();
         void outputManager();
         void outputAllPeople();
-        bool checkDuplicatedIdPeople(int);
-        int findPeopleById(int);
+        bool checkDuplicatedIdPeople(string);
+        int findPeopleById(string);
         void findPeopleByName(string);
         void changePeopleInformation(string);
-        void deletePeopleById(int);
+        void deletePeopleById(string);
         void readFile();
         void exportFile();
         ~PEOPLELIST();

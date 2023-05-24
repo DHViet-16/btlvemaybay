@@ -12,11 +12,12 @@ class ACCOUNTSLIST
         ACCOUNTSLIST();
         void setAccountsList(vector<ACCOUNT*>);
         vector<ACCOUNT*> getAccountsList();
-        void inputAAcount(int);
+        void inputAAcount(string);
         bool checkDuplicatedUsername(string);
         void readFile();
         void exportFile();
         int checkAccount (string username, string password);
+        int checkAccountUsername(string username);
         void deleteAccount (string);
         ~ACCOUNTSLIST();
 };
